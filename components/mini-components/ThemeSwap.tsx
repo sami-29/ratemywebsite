@@ -1,8 +1,8 @@
 "use client";
-import { SVGProps, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { themeChange } from "theme-change";
 
-export default function ThemeSwap() {
+export default function ThemeSwap(props: { lng: string }) {
   const moonRef = useRef<SVGSVGElement>(null);
   const sunRef = useRef<SVGSVGElement>(null);
 
@@ -14,7 +14,10 @@ export default function ThemeSwap() {
     }
   }, []);
   return (
-    <label className='swap swap-rotate absolute right-3 top-3 '>
+    <label
+      className={`swap swap-rotate absolute top-3 ${
+        props.lng == "ar" ? "left-3" : "right-3 "
+      } `}>
       <input type='checkbox' />
       <svg
         ref={moonRef}
