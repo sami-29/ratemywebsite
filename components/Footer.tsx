@@ -21,8 +21,9 @@ export default async function Footer({
   const { t } = await useTranslation(lng);
   return (
     <footer className='footer footer-center p-4 bg-base-300 text-base-content'>
-      <div className='flex gap-96'>
-        <p>{props.copyright}</p>
+      <div className='flex'>
+        <p>{props.copyright} </p>
+        <span className='md:mx-12'>|</span>
         <div className='tracking-widest'>
           <Trans i18nKey='languageSwitcher' t={t}>
             {props.switch} <strong>{{ lng }}</strong> {props.to}:{" "}

@@ -1,24 +1,31 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { themeChange } from "theme-change";
 
 export default function ThemeSwap(props: { lng: string }) {
   const moonRef = useRef<SVGSVGElement>(null);
   const sunRef = useRef<SVGSVGElement>(null);
+  const checkbox = useRef<HTMLInputElement>(null);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     themeChange(false);
-    if (localStorage.getItem("theme") == "halloween") {
-      moonRef.current?.classList.add("ACTIVECLASS");
-      sunRef.current?.classList.remove("ACTIVECLASS");
+    if (localStorage.getItem("theme") === "halloween") {
+      setIsChecked(true);
     }
   }, []);
+
   return (
     <label
       className={`swap swap-rotate absolute top-3 ${
         props.lng == "ar" ? "left-3" : "right-3 "
       } `}>
-      <input type='checkbox' />
+      <input
+        ref={checkbox}
+        type='checkbox'
+        onClick={() => setIsChecked(!isChecked)}
+        checked={isChecked}
+      />
       <svg
         ref={moonRef}
         data-set-theme='halloween'
